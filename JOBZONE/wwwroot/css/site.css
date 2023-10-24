@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.gradient {
+    background: linear-gradient(to right,#ffca00,#ffa600,#ffb600);    
+}
+.navbar {
+    background: linear-gradient(to right,#ffca00 30%,#ffa600,#ffb600,#04396f 88%);
+}
+.article {
+    font-size: 2.5rem;
+    font-family: 'Agency FB';
+    background: linear-gradient(to right,#ffb600,10%,#ffca00);
+    border-radius: 20px;
+    opacity:1;
+}
+.article:hover {
+    font-size:3rem;
+    box-shadow: 10px -8px lightgray;
+}
+
