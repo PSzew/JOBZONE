@@ -13,6 +13,7 @@ namespace JOBZONE
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<CompanyModel> Company { get; set; }
+        public DbSet<JobOfferModel> JobOffer { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {

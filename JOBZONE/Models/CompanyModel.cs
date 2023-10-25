@@ -12,6 +12,7 @@ namespace JOBZONE.Models
 
         [Required]
         public string? Adres { get; set; }
+        public Uri ComapnyImg { get; set; }
         public virtual ICollection<JobOfferModel>? JobOfferModel { get; set; }
     }
 }

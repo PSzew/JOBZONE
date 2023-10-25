@@ -1,4 +1,6 @@
 ﻿using JOBZONE.Models;
+using JOBZONE.Services;
+using JOBZONE.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,6 +9,7 @@ namespace JOBZONE.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -18,7 +21,7 @@ namespace JOBZONE.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult LoginPage()
         {
             return View();
         }

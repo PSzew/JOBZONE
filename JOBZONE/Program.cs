@@ -1,10 +1,13 @@
 using JOBZONE;
+using JOBZONE.Services;
+using JOBZONE.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IJobOfferService, JobOfferService>();
 
 builder.Services.AddDbContext<DbJobZoneContext>(builder =>
 {

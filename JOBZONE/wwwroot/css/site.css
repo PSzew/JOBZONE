@@ -33,4 +33,10 @@ body {
     font-size:3rem;
     box-shadow: 10px -8px lightgray;
 }
+.login-Window{
+    background-color:red;
+}
+.height100{
+    height: 83vh;
+}
 
