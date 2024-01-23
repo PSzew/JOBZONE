@@ -29,8 +29,8 @@ namespace JOBZONE.Services
         }
         public List<JobOfferModel> GetNewest()
         {
-            var Offers = _context.JobOffer.OrderByDescending(e => e.ID).ToList();
-            return Offers;
+            //var Offers = _context.JobOffer.OrderByDescending(e => e.ID).ToList();
+            throw new NotImplementedException();
         }
 
         public JobOfferModel GetById(int id)
