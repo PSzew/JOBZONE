@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JOBZONE.Models
 {
-    public class JobOfferModel
+    public class OfferModel
     {
         [Key]
         public int ID { get; set; }
@@ -45,7 +45,7 @@ namespace JOBZONE.Models
         public string? Requirements { get; set; }
 
         [Required]
-        public string? Benefits { get; set;}
+        public string? Benefits { get; set; }
 
         [Required]
         public string? CompanyInfo { get; set; }
@@ -53,6 +53,5 @@ namespace JOBZONE.Models
         [ForeignKey("ID")]
         public virtual CompanyModel? CompanyModel { get; set; }
         public virtual int? ComapnyId { get; set; }
-
     }
 }

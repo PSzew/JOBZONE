@@ -182,7 +182,7 @@ namespace JOBZONE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CompanyID")
+                    b.Property<int?>("ComapnyId")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyInfo")
@@ -290,6 +290,71 @@ namespace JOBZONE.Migrations
                     b.ToTable("LinksModel");
                 });
 
+            modelBuilder.Entity("JOBZONE.Models.OfferModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Benefits")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ComapnyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dueties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("OfferColapseTime")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Requirements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SalaryMax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SalaryMin")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TypeOfContract")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkDays")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkHours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Workplace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Offers");
+                });
+
             modelBuilder.Entity("JOBZONE.Models.RecentlyViewedModel", b =>
                 {
                     b.Property<int>("ID")
@@ -365,6 +430,9 @@ namespace JOBZONE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
@@ -433,6 +501,17 @@ namespace JOBZONE.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("UserModel");
+                });
+
+            modelBuilder.Entity("JOBZONE.Models.OfferModel", b =>
+                {
+                    b.HasOne("JOBZONE.Models.CompanyModel", "CompanyModel")
+                        .WithMany()
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompanyModel");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.RecentlyViewedModel", b =>

@@ -47,6 +47,7 @@ namespace JOBZONE.Models
 
         [Required]
         public string? JobExperienceDescripton { get; set; }
+        public bool isAdmin { get; set; }
 
         public virtual ICollection<JobExperienceModel>? JobExperince { get; set; }
 

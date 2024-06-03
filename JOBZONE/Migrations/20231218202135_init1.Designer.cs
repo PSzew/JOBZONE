@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOBZONE.Migrations
 {
     [DbContext(typeof(DbJobZoneContext))]
-    [Migration("20231105222237_init3")]
-    partial class init3
+    [Migration("20231218202135_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,6 +86,10 @@ namespace JOBZONE.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Adres")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ComapnyImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -180,7 +184,7 @@ namespace JOBZONE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CompanyID")
+                    b.Property<int?>("ComapnyId")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyInfo")
@@ -362,6 +366,9 @@ namespace JOBZONE.Migrations
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
 
                     b.HasKey("UserId");
 

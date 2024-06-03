@@ -21,7 +21,6 @@ namespace JOBZONE.Services
         {
             throw new NotImplementedException();
         }
-
         public List<JobOfferModel> GetAll()
         {
             var Offers = _context.JobOffer.ToList();

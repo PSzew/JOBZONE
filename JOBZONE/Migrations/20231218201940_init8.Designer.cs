@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOBZONE.Migrations
 {
     [DbContext(typeof(DbJobZoneContext))]
-    [Migration("20231022221850_init")]
-    partial class init
+    [Migration("20231218201940_init8")]
+    partial class init8
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace JOBZONE.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("JOBZONE.Models.Applied", b =>
+            modelBuilder.Entity("JOBZONE.Models.AppliedModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace JOBZONE.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Applied");
+                    b.ToTable("AppliedModel");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.CertificateModel", b =>
@@ -75,6 +75,31 @@ namespace JOBZONE.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CertificateModel");
+                });
+
+            modelBuilder.Entity("JOBZONE.Models.CompanyModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Adres")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ComapnyImg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.EducationModel", b =>
@@ -148,6 +173,71 @@ namespace JOBZONE.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("JobExperienceModel");
+                });
+
+            modelBuilder.Entity("JOBZONE.Models.JobOfferModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Benefits")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ComapnyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dueties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("OfferColapseTime")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Requirements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SalaryMax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SalaryMin")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TypeOfContract")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkDays")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkHours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Workplace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("JobOffer");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.LanguageModel", b =>
@@ -277,12 +367,15 @@ namespace JOBZONE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("JOBZONE.Models.Applied", b =>
+            modelBuilder.Entity("JOBZONE.Models.AppliedModel", b =>
                 {
                     b.HasOne("JOBZONE.Models.UserModel", "UserModel")
                         .WithMany("Applied")
@@ -318,6 +411,17 @@ namespace JOBZONE.Migrations
                     b.Navigation("UserModel");
                 });
 
+            modelBuilder.Entity("JOBZONE.Models.JobOfferModel", b =>
+                {
+                    b.HasOne("JOBZONE.Models.CompanyModel", "CompanyModel")
+                        .WithMany("JobOfferModel")
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompanyModel");
+                });
+
             modelBuilder.Entity("JOBZONE.Models.LanguageModel", b =>
                 {
                     b.HasOne("JOBZONE.Models.UserModel", "UserModel")
@@ -343,6 +447,11 @@ namespace JOBZONE.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("UserModel");
+                });
+
+            modelBuilder.Entity("JOBZONE.Models.CompanyModel", b =>
+                {
+                    b.Navigation("JobOfferModel");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.UserModel", b =>
