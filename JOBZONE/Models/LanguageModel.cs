@@ -14,8 +14,7 @@ namespace JOBZONE.Models
         [Required]
         public string? LanguageLevel { get; set; }
 
-        [ForeignKey("UserId")]
         public virtual UserModel? UserModel { get; set; }
-        public virtual int? UserId { get; set; }
+        public virtual string? UserId { get; set; }
     }
 }

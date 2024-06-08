@@ -1,0 +1,63 @@
+﻿@model CertificateModel;
+@{
+    ViewData["Title"] = "Dodaj certyfikat";
+}
+
+<style>
+    body {
+        background-color: #eee
+    }
+
+    .invalid-feedback {
+        display: block; /* Ensure that feedback is shown */
+    }
+</style>
+<div class="container mt-5">
+    <h2>Dodaj Szczebel Edukacji</h2>
+    @using (Html.BeginForm("AddCertificate", "User", HttpMethod.Post))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="schoolName">Certyfikatu</label>
+                <input type="text" class="form-control" id="CertificateType" name="CertificateType" asp-for="CertificateType">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="CertificateType"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="schoolName">Wystawiający certyfikat</label>
+                <input type="text" class="form-control" id="TrainingHost" name="TrainingHost" asp-for="TrainingHost">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="TrainingHost"></span>
+                </div>
+            </div>
+        </div>        
+        <div class="form-row">            
+            <div class="form-group col-md-6">
+                <label for="endDate">Data zakończenia</label>
+                <input type="date" class="form-control" id="TrainingEndDate" name="TrainingEndDate" asp-for="TrainingEndDate">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="TrainingEndDate"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="isOngoing" onclick="OnGoing()">
+                        <label class="form-check-label" for="isOngoing">Dalej trwa</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    }
+</div>
+<script>
+    var checbox = document.getElementById("isOngoing");
+    function OnGoing() {
+        var endtime = document.getElementById("TrainingEndDate");
+        if (checbox.checked)
+            endtime.disabled = true;
+        else
+            endtime.disabled = false;
+    }
+</script>
+

@@ -26,9 +26,8 @@ namespace JOBZONE.Models
             [System.ComponentModel.DefaultValue("Brak")]
             public string? Responsibilites { get; set; }
 
-            [ForeignKey("UserId")]
             public virtual UserModel? UserModel { get; set; }
-            public virtual int? UserId { get; set; }
+            public virtual string? UserId { get; set; }
 
     }
 }

@@ -8,49 +8,47 @@ namespace JOBZONE.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Workplace { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? JobLevel { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? TypeOfContract { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? EmploymentType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? JobType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public decimal SalaryMin { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public decimal SalaryMax { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public int WorkDays { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public int WorkHours { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public DateTime? OfferColapseTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Dueties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Requirements { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Benefits { get; set;}
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? CompanyInfo { get; set; }
-
-        [ForeignKey("ID")]
         public virtual CompanyModel? CompanyModel { get; set; }
         public virtual int? ComapnyId { get; set; }
 

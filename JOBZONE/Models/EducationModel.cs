@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JOBZONE.Models
 {
@@ -8,24 +9,26 @@ namespace JOBZONE.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         [System.ComponentModel.DefaultValue("Podstawowe")]
         public string? EducationLevel { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? SchoolName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Town { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Proffesion { get; set; }
 
-        [Required]
-        public DateTime Peroid { get; set; }
+        [Required(ErrorMessage = "To pole jest wymagane!")]
+        public DateTime StartDate { get; set; }
 
-        [ForeignKey("UserId")]
+        [AllowNull]
+        public DateTime EndDate { get; set; }
+
         public virtual UserModel? UserModel { get; set; }
-        public virtual int? UserId { get; set; }
+        public virtual string? UserId { get; set; }
     }
 }

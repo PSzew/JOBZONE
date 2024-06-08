@@ -1,0 +1,92 @@
+﻿@model JOBZONE.Models.EducationModel;
+@{    
+    ViewData["Title"] = "Dodaj szkołę";
+    
+}
+<style>
+    body {
+        background-color: #eee
+    }
+
+    .invalid-feedback {
+        display: block; /* Ensure that feedback is shown */
+    }
+</style>
+<div class="container mt-5">
+    <h2>Dodaj Szczebel Edukacji</h2>     
+    @using (Html.BeginForm("AddEducation", "User", HttpMethod.Post))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="educationLevel">Poziom edukacji</label>
+                <select class="form-control" id="educationLevel" name="educationLevel" asp-for=EducationLevel>
+                    <option value="podstawowe">Podstawowe</option>
+                    <option value="średnie">Średnie</option>
+                    <option value="wyższe">Wyższe</option>
+                </select>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="EducationLevel"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="schoolName">Nazwa szkoły</label>
+                <input type="text" class="form-control" id="schoolName" name="schoolName" asp-for="SchoolName">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="SchoolName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="city">Miasto</label>
+                <input type="text" class="form-control" id="town" name="town" asp-for="Town">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="Town"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="occupation">Zawód</label>
+                <input type="text" class="form-control" id="Proffesion" name="Proffesion" asp-for="Proffesion">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="Proffesion"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="startDate">Data rozpoczęcia</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" asp-for="StartDate">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="StartDate"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="endDate">Data zakończenia</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" asp-for="EndDate">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="EndDate"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-check">                        
+                        <input type="checkbox" class="form-check-input" id="isOngoing" onclick="OnGoing()">
+                        <label class="form-check-label" for="isOngoing">Dalej trwa</label>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    }
+</div>
+<script>
+    var checbox = document.getElementById("isOngoing");   
+    function OnGoing()
+    {       
+        var endtime = document.getElementById("endDate");
+        if (checbox.checked)
+            endtime.disabled = true;
+        else
+            endtime.disabled = false;
+    }
+</script>
+
+

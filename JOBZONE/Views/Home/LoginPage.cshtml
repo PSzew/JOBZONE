@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model JOBZONE.Models.Login
 @{
     ViewData["Title"] = "Login Page";
 }
@@ -8,24 +9,28 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card text-white border-white" style="border-radius: 1rem; background: linear-gradient(to bottom,#ffb600,#ffa600,#ffca00); ">
+                <div class="card border-white" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
 
                         <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Zaloguj się</h2>
-                            <p class="text-white-50 mb-5">Podaj e-mail i hasło!</p>
+                            <p class="text-dark-50 mb-5">Podaj e-mail i hasło!</p>
 
-                            <div class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                <label class="form-label" for="typeEmailX">Email</label>
-                            </div>
+                            @using(Html.BeginForm("LoginPage","Home",HttpMethod.Post))
+                            {
+                                @Html.ValidationSummary();
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" id="typeEmailX" asp-for="Email"  class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeEmailX">Email</label>
+                                </div>
 
-                            <div class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                <label class="form-label" for="typePasswordX">Password</label>
-                            </div>                          
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Zaloguj</button>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="typePasswordX" asp-for="Password" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typePasswordX">Password</label>
+                                </div>
+                                <button class="btn btn-outline-dark btn-lg px-5" type="submit">Zaloguj</button>
+                            }
 
                             <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

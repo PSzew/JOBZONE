@@ -4,6 +4,7 @@ using JOBZONE;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOBZONE.Migrations
 {
     [DbContext(typeof(DbJobZoneContext))]
-    partial class DbJobZoneContextModelSnapshot : ModelSnapshot
+    [Migration("20240608163546_Comapnies")]
+    partial class Comapnies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,6 +93,7 @@ namespace JOBZONE.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ComapnyImg")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

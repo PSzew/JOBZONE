@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model List<JobOfferModel>;
+@inject UserManager<UserModel> UserManager
+@{
+    ViewData["Title"] = "Oferty pracy";
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<div class="container d-flex justify-content-center">
+    <ul class="list-group mt-5 text-dark">
+        @if (Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item d-flex justify-content-between align-content-center">
+                    <div class="d-flex flex-row">
+                        <img src="https://img.icons8.com/color/100/000000/job.png" width="100" class="img-fluid m-2" />
+                        <div class="ml-3 align-content-center">
+                            <h6 class="mb-0">@item.EmploymentType</h6>
+                            <div class="about align-content-center text-center">
+                                <span>firma</span>
+                                <span>@item.TypeOfContract</span>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-content-center m-3 text-right">
+                        @using (Html.BeginForm("EditOffer", "Admin", FormMethod.Get))
+                        {
+                            <input type="text" style="visibility:hidden" value="@item.ID" name="id" />
+                            <button type="submit" class="btn btn-primary btn-sm">Edytuj</button>
+                        }
+                        @using (Html.BeginForm("DeleteOffer", "Admin", FormMethod.Post))
+                        {
+                            <input type="text" style="visibility:hidden" value="@item.ID" name="id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                        }
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <h1 style="color:red">Niestety nie dodałeś jeszcze żadnych ofert pracy</h1>
+        }
+    </ul>
+</div>
+<div class="container-fluid text-center mt-3">
+    @using (Html.BeginForm("AddOffer", "Admin", FormMethod.Post))
+    {
+        <button class="btn btn-primary btn-lg">Dodaj</button>
+    }
+</div>

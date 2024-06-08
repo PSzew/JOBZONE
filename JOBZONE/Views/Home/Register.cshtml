@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model JOBZONE.Models.Register
+@{
+    ViewData["Title"] = "Rejerstracja";
+}
+<section class="vh-100"
+         style="background: linear-gradient(to bottom,#ffb600,#ffa600,#ffca00);">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3 p-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Zarejerstruj się!</h2>
+
+                            @using(Html.BeginForm("Register","Home",FormMethod.Post))
+                            {
+                                @Html.ValidationSummary();
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="text" id="Name" asp-for="Name" class="form-control form-control-lg" />
+                                    <label class="form-label" for="Name">Imie</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="text" id="SurName" asp-for="SurName" class="form-control form-control-lg" />
+                                    <label class="form-label" for="SurName">Nazwisko</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="email" id="Email" asp-for="Email" class="form-control form-control-lg" />
+                                    <label class="form-label" for="Email">Email</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="tel" id="Telephone" asp-for="Telephone" class="form-control form-control-lg" />
+                                    <label class="form-label" for="Telephone">Telefon</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="password" id="Password" asp-for="Password" class="form-control form-control-lg" />
+                                    <label class="form-label" for="Password">Hasło</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="password" id="RepeatPassword" asp-for="RepeatPassword" class="form-control form-control-lg" />
+                                    <label class="form-label" for="RepeatPassword">Powtórz hasło</label>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                        Zarejerstuj się!
+                                    </button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">
+                                    Masz już konto?
+                                    <a asp-action="LoginPage" asp-controller="Home" class="fw-bold text-body"><u>Zaloguj się!</u></a>
+                                </p>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

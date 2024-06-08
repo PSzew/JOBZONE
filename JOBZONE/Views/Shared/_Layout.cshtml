@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<UserModel> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,12 +32,31 @@
                 <ul class="navbar-nav" style="margin-right:10px">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Zaloguj się!
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                var user = await UserManager.GetUserAsync(User);
+                                <b>Witaj @user.Name</b>
+                            }
+                            else
+                            {
+                                <b>Zaloguj się!</b>
+                            }
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item nav-link" asp-asp-area="" asp-action=LoginPage asp-controller="Home">Zaloguj się!</a>
-                            <a class="dropdown-item nav-link" href="#">Zarejerstruj się!</a>
-                        </div>
+                        @if(User.Identity.IsAuthenticated)
+                            {
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item nav-link" asp-asp-area="" asp-action="Index" asp-controller="User">Profil</a>
+                                <a class="dropdown-item nav-link" asp-asp-area="" asp-action=LogOut asp-controller=Home>Wyloguj się</a>
+                            </div>
+                            }
+                            else
+                            {
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item nav-link" asp-asp-area="" asp-action=LoginPage asp-controller="Home">Zaloguj się!</a>
+                                <a class="dropdown-item nav-link" asp-asp-area="" asp-action=Register asp-controller="Home">Zarejerstruj się!</a>
+                            </div>
+                            }
+                        
                     </li>
                 </ul>               
                 

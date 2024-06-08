@@ -4,6 +4,7 @@ using JOBZONE;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOBZONE.Migrations
 {
     [DbContext(typeof(DbJobZoneContext))]
-    partial class DbJobZoneContextModelSnapshot : ModelSnapshot
+    [Migration("20240603175450_Main")]
+    partial class Main
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,7 +77,7 @@ namespace JOBZONE.Migrations
 
                     b.HasIndex("UserModelId");
 
-                    b.ToTable("Certificates");
+                    b.ToTable("CertificateModel");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.CompanyModel", b =>
@@ -91,6 +93,7 @@ namespace JOBZONE.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ComapnyImg")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -99,7 +102,7 @@ namespace JOBZONE.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.EducationModel", b =>
@@ -114,7 +117,7 @@ namespace JOBZONE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("Peroid")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Proffesion")
@@ -124,9 +127,6 @@ namespace JOBZONE.Migrations
                     b.Property<string>("SchoolName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Town")
                         .IsRequired()
@@ -142,7 +142,7 @@ namespace JOBZONE.Migrations
 
                     b.HasIndex("UserModelId");
 
-                    b.ToTable("Education");
+                    b.ToTable("EducationModel");
                 });
 
             modelBuilder.Entity("JOBZONE.Models.JobExperienceModel", b =>

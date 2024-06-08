@@ -8,18 +8,16 @@ namespace JOBZONE.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? CertificateType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? TrainingHost { get; set; }
-
-        [Required]
+        
         public DateTime TrainingEndDate { get; set; }
 
-        [ForeignKey("UserId")]
         public virtual UserModel? UserModel { get; set; }
-        public virtual int? UserId { get; set; }
+        public virtual string? UserId { get; set; }
 
     }
 }

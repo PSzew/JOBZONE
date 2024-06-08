@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using System.ComponentModel.DataAnnotations;
 
 namespace JOBZONE.Models
 {
@@ -7,12 +8,12 @@ namespace JOBZONE.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Adres { get; set; }
-        public Uri ComapnyImg { get; set; }
+        public Uri? ComapnyImg { get; set; }
         public virtual ICollection<JobOfferModel>? JobOfferModel { get; set; }
     }
 }

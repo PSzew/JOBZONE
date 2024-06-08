@@ -1,0 +1,38 @@
+﻿@model CompanyModel;
+@{
+    ViewData["Title"] = "Edytuj";
+}
+
+<style>
+    body {
+        background-color: #eee
+    }
+
+    .invalid-feedback {
+        display: block; /* Ensure that feedback is shown */
+    }
+</style>
+<div class="container mt-5">
+    <h2>Edytuj Firmę</h2>
+    @using (Html.BeginForm("EditCompany", "Admin", HttpMethod.Post))
+    {
+        <input style="visibility:hidden" asp-for="ID"/>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="schoolName">Nazwa</label>
+                <input type="text" class="form-control" id="Name" name="Name" asp-for="Name">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="schoolName">Adres</label>
+                <input type="text" class="form-control" id="Adres" name="Adres" asp-for="Adres">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="Adres"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Edytuj</button>
+    }
+</div>
