@@ -1,4 +1,5 @@
-﻿using JOBZONE.Services.Interfaces;
+﻿using JOBZONE.Models;
+using JOBZONE.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOBZONE.Controllers
@@ -6,15 +7,17 @@ namespace JOBZONE.Controllers
     public class JobOfferController : Controller
     {
         private readonly IJobOfferService _jobOfferServices;
-        public JobOfferController(IJobOfferService jobOfferServices)
+        private readonly ICompanySerivce _companyServices;
+        public JobOfferController(IJobOfferService jobOfferServices, ICompanySerivce companyServices)
         {
             _jobOfferServices = jobOfferServices;
+            _companyServices = companyServices;
         }
 
         public IActionResult GetNewest()
         {
-            var Offers = _jobOfferServices.GetNewest();
-            return View(Offers);
+            CompanyAndOffer CAO = new CompanyAndOffer(_companyServices.GetAll(),_jobOfferServices.GetNewest());
+            return View(CAO);
         }
     }
 }

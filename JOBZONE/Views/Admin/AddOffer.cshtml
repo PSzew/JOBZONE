@@ -1,0 +1,162 @@
+﻿@model ExtenndedOffer;
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<style>
+    body {
+        background-color: #eee
+    }
+
+    .invalid-feedback {
+        display: block; /* Ensure that feedback is shown */
+    }
+</style>
+<div class="container mt-5">
+    <h2>Dodaj Firmę</h2>
+    @using (Html.BeginForm("AddOffer", "Admin", HttpMethod.Post))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.EmploymentType">Stanowisko</label>
+                <input type="text" class="form-control" id="JobOffer.EmploymentType" name="JobOffer.EmploymentType" asp-for="JobOffer.EmploymentType">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.EmploymentType"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.CompanyInfo">Firma</label>
+                <select class="form-control" id="JobOffer.CompanyInfo" name="JobOffer.CompanyInfo" asp-for="JobOffer.CompanyInfo">
+                    @foreach(var item in Model.companyList)
+                    {
+                        <option value="@item.ID">
+                            @item.Name
+                        </option>
+                    }
+                </select>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.CompanyInfo"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.Workplace">Miejsce pracy</label>
+                <input type="text" class="form-control" id="JobOffer.Workplace" name="JobOffer.Workplace" asp-for="JobOffer.Workplace">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.Workplace"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.JobLevel">Położenie</label>
+                <select class="form-control" id="JobOffer.JobLevel" name="JobOffer.JobLevel" asp-for="JobOffer.JobLevel">
+                    <option>
+                        Pracownik
+                    </option>
+                    <option>
+                        Kierownik
+                    </option>
+                </select>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.JobLevel"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.JobType">Rodzaj pracy</label>
+                <select class="form-control" id="JobOffer.JobType" name="JobOffer.JobType" asp-for="JobOffer.JobType">
+                    <option>
+                        Stacjonarna
+                    </option>
+                    <option>
+                        Zdalna
+                    </option>
+                    <option>
+                        Hybrydowa
+                    </option>
+                </select>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.JobType"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.TypeOfContract">Umowa</label>
+                <select class="form-control" id="JobOffer.TypeOfContract" name="JobOffer.TypeOfContract" asp-for="JobOffer.TypeOfContract">
+                    <option>
+                        B2B
+                    </option>
+                    <option>
+                        Umowa o prace
+                    </option>
+                    <option>
+                        Umowa o dzieło
+                    </option>
+                </select>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.TypeOfContract"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.SalaryMin">Płaca minimalna</label>
+                <input type="text" class="form-control" id="JobOffer.SalaryMin" name="JobOffer.SalaryMin" asp-for="JobOffer.SalaryMin">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.SalaryMin"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.SalaryMax">Płaca maksymnalna</label>
+                <input type="text" class="form-control" id="JobOffer.SalaryMax" name="JobOffer.SalaryMax" asp-for="JobOffer.SalaryMax">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.SalaryMax"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.WorkDays">Dni robocze</label>
+                <input type="text" class="form-control" id="JobOffer.WorkDays" name="JobOffer.WorkDays" asp-for="JobOffer.WorkDays">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.WorkDays"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.WorkHours">Godziny robocze</label>
+                <input type="text" class="form-control" id="JobOffer.WorkHours" name="JobOffer.WorkHours" asp-for="JobOffer.WorkHours">
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.WorkHours"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="JobOffer.Requirements">Wymagania</label>
+                <textarea class="form-control" id="JobOffer.Requirements" name="JobOffer.Requirements" asp-for="JobOffer.Requirements"></textarea>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.Requirements"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="JobOffer.Benefits">Benefity</label>
+                <textarea class="form-control" id="JobOffer.Benefits" name="JobOffer.Benefits" asp-for="JobOffer.Benefits"></textarea>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.Benefits"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">            
+            <div class="form-group col-md-6">
+                <label for="schoolName">Obowiązki</label>
+                <textarea class="form-control" id="JobOffer.Dueties" name="JobOffer.Dueties" asp-for="JobOffer.Dueties"></textarea>
+                <div class="invalid-feedback is-invalid">
+                    <span asp-validation-for="JobOffer.Dueties"></span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    }
+</div>
+

@@ -16,7 +16,7 @@ builder.Services.AddScoped<ICompanySerivce, CompanyService>();
 
 builder.Services.AddDbContext<DbJobZoneContext>(builder =>
 {
-    builder.UseSqlServer(@"Data Source=DESKTOP-PLI69GE\SQLEXPRESS;Initial Catalog=Jobzone_Main;Integrated Security=True;TrustServerCertificate=True");
+    builder.UseSqlServer(@"Data Source=DESKTOP-PLI69GE\SQLEXPRESS;Initial Catalog=Jobzone_test2;Integrated Security=True;TrustServerCertificate=True");
 });
 
 builder.Services.AddIdentity<UserModel,IdentityRole>(options =>

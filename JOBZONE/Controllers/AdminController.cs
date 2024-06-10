@@ -8,9 +8,11 @@ namespace JOBZONE.Controllers
     public class AdminController : Controller
     {
         private readonly ICompanySerivce _companyService;
-        public AdminController(ICompanySerivce companyService)
+        private readonly IJobOfferService _jobOfferService;
+        public AdminController(ICompanySerivce companyService, IJobOfferService jobOfferService)
         {
             _companyService = companyService;
+            _jobOfferService = jobOfferService;
         }
 
         public IActionResult Index()
@@ -63,7 +65,36 @@ namespace JOBZONE.Controllers
         }
         public IActionResult ManageOffers()
         {
-            return View();
+            CompanyAndOffer CAO = new CompanyAndOffer(_companyService.GetAll(),_jobOfferService.GetAll());
+            return View(CAO);
+        }
+
+        [HttpGet]
+        public IActionResult AddOffer()
+        {
+            var item = new ExtenndedOffer();
+            item.companyList = _companyService.GetAll();
+            return View(item);
+        }
+        [HttpPost]
+        public IActionResult AddOffer(ExtenndedOffer userData)
+        {
+            if (!ModelState.IsValid)
+            {
+                userData.companyList = _companyService.GetAll();
+                return View(userData);
+            }
+            else
+            {
+                int id = int.Parse(userData.JobOffer.CompanyInfo);
+                _jobOfferService.Add(userData.JobOffer, id);
+                return RedirectToAction("ManageOffers", "Admin");
+            }
+        }
+        public IActionResult DeleteOffer(string id)
+        {
+            _jobOfferService.Delete(int.Parse(id));
+            return RedirectToAction("ManageOffers");
         }
     }
 }

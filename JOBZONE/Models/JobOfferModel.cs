@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace JOBZONE.Models
 {
@@ -23,20 +24,20 @@ namespace JOBZONE.Models
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? JobType { get; set; }
 
-        [Required(ErrorMessage = "To pole jest wymagane!")]
+        [Required(ErrorMessage = "To pole jest wymagane!")]        
         public decimal SalaryMin { get; set; }
 
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public decimal SalaryMax { get; set; }
 
         [Required(ErrorMessage = "To pole jest wymagane!")]
+        [Range(1, 7, ErrorMessage = "Maksymalna liczba to 7!")]
         public int WorkDays { get; set; }
 
         [Required(ErrorMessage = "To pole jest wymagane!")]
+        [Range(1, 12, ErrorMessage = "Maksymalna liczba to 7!")]
         public int WorkHours { get; set; }
-
-        [Required(ErrorMessage = "To pole jest wymagane!")]
-        public DateTime? OfferColapseTime { get; set; }
+        public DateTime? OfferColapseTime { get; set; } = DateTime.MinValue;
 
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Dueties { get; set; }
@@ -47,7 +48,6 @@ namespace JOBZONE.Models
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? Benefits { get; set;}
 
-        [Required(ErrorMessage = "To pole jest wymagane!")]
         public string? CompanyInfo { get; set; }
         public virtual CompanyModel? CompanyModel { get; set; }
         public virtual int? ComapnyId { get; set; }

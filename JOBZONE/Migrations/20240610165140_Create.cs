@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JOBZONE.Migrations
 {
-    public partial class Main : Migration
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,18 +60,18 @@ namespace JOBZONE.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Company",
+                name: "Companies",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adres = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComapnyImg = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ComapnyImg = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.ID);
+                    table.PrimaryKey("PK_Companies", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -201,7 +201,7 @@ namespace JOBZONE.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CertificateModel",
+                name: "Certificates",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -214,16 +214,16 @@ namespace JOBZONE.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CertificateModel", x => x.ID);
+                    table.PrimaryKey("PK_Certificates", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CertificateModel_AspNetUsers_UserModelId",
+                        name: "FK_Certificates_AspNetUsers_UserModelId",
                         column: x => x.UserModelId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "EducationModel",
+                name: "Education",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -232,15 +232,16 @@ namespace JOBZONE.Migrations
                     SchoolName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Town = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Proffesion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Peroid = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserModelId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EducationModel", x => x.ID);
+                    table.PrimaryKey("PK_Education", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_EducationModel_AspNetUsers_UserModelId",
+                        name: "FK_Education_AspNetUsers_UserModelId",
                         column: x => x.UserModelId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
@@ -337,7 +338,8 @@ namespace JOBZONE.Migrations
                 name: "JobOffer",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Workplace = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     JobLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TypeOfContract = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -352,49 +354,17 @@ namespace JOBZONE.Migrations
                     Requirements = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Benefits = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyInfo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyModelID = table.Column<int>(type: "int", nullable: true),
                     ComapnyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_JobOffer", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_JobOffer_Company_ID",
-                        column: x => x.ID,
-                        principalTable: "Company",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Offers",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    Workplace = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeOfContract = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmploymentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SalaryMin = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SalaryMax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    WorkDays = table.Column<int>(type: "int", nullable: false),
-                    WorkHours = table.Column<int>(type: "int", nullable: false),
-                    OfferColapseTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Dueties = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Requirements = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Benefits = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompanyInfo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComapnyId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Offers", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Offers_Company_ID",
-                        column: x => x.ID,
-                        principalTable: "Company",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_JobOffer_Companies_CompanyModelID",
+                        column: x => x.CompanyModelID,
+                        principalTable: "Companies",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -442,19 +412,24 @@ namespace JOBZONE.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CertificateModel_UserModelId",
-                table: "CertificateModel",
+                name: "IX_Certificates_UserModelId",
+                table: "Certificates",
                 column: "UserModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EducationModel_UserModelId",
-                table: "EducationModel",
+                name: "IX_Education_UserModelId",
+                table: "Education",
                 column: "UserModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_JobExperienceModel_UserModelId",
                 table: "JobExperienceModel",
                 column: "UserModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobOffer_CompanyModelID",
+                table: "JobOffer",
+                column: "CompanyModelID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageModel_UserModelId",
@@ -493,10 +468,10 @@ namespace JOBZONE.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CertificateModel");
+                name: "Certificates");
 
             migrationBuilder.DropTable(
-                name: "EducationModel");
+                name: "Education");
 
             migrationBuilder.DropTable(
                 name: "JobExperienceModel");
@@ -511,16 +486,13 @@ namespace JOBZONE.Migrations
                 name: "LinksModel");
 
             migrationBuilder.DropTable(
-                name: "Offers");
-
-            migrationBuilder.DropTable(
                 name: "RecentlyViewedModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Company");
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

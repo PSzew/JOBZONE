@@ -15,7 +15,6 @@ namespace JOBZONE
         public DbSet<UserModel> Users { get; set; }
         public DbSet<CompanyModel> Companies { get; set; }
         public DbSet<JobOfferModel> JobOffer { get; set; }
-        public DbSet<OfferModel> Offers { get; set; }
         public DbSet<EducationModel> Education { get; set; }
         public DbSet<CertificateModel> Certificates { get; set; }
         

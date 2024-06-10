@@ -1,5 +1,6 @@
 ﻿using JOBZONE.Models;
 using JOBZONE.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace JOBZONE.Services
 {
@@ -12,27 +13,34 @@ namespace JOBZONE.Services
             _context = context;
         }
 
-        public int Add()
+        public int Add(JobOfferModel offer , int CompanyID)
         {
-            throw new NotImplementedException();
+            var company = _context.Companies.Include(b => b.JobOfferModel).Where(x => x.ID == CompanyID).First();
+            company.JobOfferModel.Add(offer);
+            return _context.SaveChanges();
         }
 
         public int Delete(int ID) 
         {
-            throw new NotImplementedException();
+            _context.JobOffer.Remove(GetById(ID));
+            return _context.SaveChanges();
         }
         public List<JobOfferModel> GetAll()
         {
-            var Offers = _context.JobOffer.ToList();
-            return Offers;
+            return _context.JobOffer.ToList();
         }
         public List<JobOfferModel> GetNewest()
         {
-            //var Offers = _context.JobOffer.OrderByDescending(e => e.ID).ToList();
-            throw new NotImplementedException();
+            var Offers = _context.JobOffer.OrderByDescending(e => e.ID).ToList();
+            return Offers;
         }
 
         public JobOfferModel GetById(int id)
+        {
+            return _context.JobOffer.Where(x => x.ID == id).First();
+        }
+
+        public JobOfferModel Edit(int id)
         {
             throw new NotImplementedException();
         }
